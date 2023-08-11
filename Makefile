@@ -1,6 +1,6 @@
 NAME = libft.a
 RM = rm -rf
-COMPİLE = gcc -Wall -Wextra -Werror -c
+CMPL = gcc -Wall -Wextra -Werror -c
 SRC = 	./ft_atoi.c 		\
  		./ft_bzero.c 		\
  		./ft_calloc.c 		\
@@ -52,11 +52,11 @@ BONUS_OBJ = $(BONUS:.c=.o)
 all: $(NAME)
 
 $(NAME) :
-	$(COMPILE) $(SRC)
+	$(CMPL) $(SRC)
 	ar rc $(NAME) $(OBJ)
 
 bonus :
-	$(COMPILE) $(BONUS)
+	$(CMPL) $(BONUS)
 	ar rc $(NAME) $(BONUS_OBJ)
 
 clean :
