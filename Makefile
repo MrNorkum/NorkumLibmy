@@ -54,17 +54,13 @@ all: $(NAME)
 $(NAME) :
 	$(CMPL) $(SRC)
 	ar rc $(NAME) $(OBJ)
-
 bonus :
 	$(CMPL) $(BONUS)
 	ar rc $(NAME) $(BONUS_OBJ)
-
 clean :
 	$(RM) $(OBJ) $(BONUS_OBJ)
-
 fclean : clean
 	$(RM) $(NAME)
-
 re: fclean $(NAME)
 
 .PHONY: all bonus clean fclean re
