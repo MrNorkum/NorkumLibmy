@@ -1,8 +1,6 @@
 NAME = libft.a
 RM = rm -rf
 COMPİLE = gcc -Wall -Wextra -Werror -c
-OBJ = $(SRC:.c=.o)
-BONUS_OBJ = $(BONUS:.c=.o)
 SRC = 	./ft_atoi.c 		\
  		./ft_bzero.c 		\
  		./ft_calloc.c 		\
@@ -47,6 +45,9 @@ BONUS = ./ft_lstadd_back.c 	\
  		./ft_lstmap.c 		\
  		./ft_lstnew.c		\
 		./ft_lstsize.c
+
+OBJ = $(SRC:.c=.o)
+BONUS_OBJ = $(BONUS:.c=.o)
 
 all: $(NAME)
 
