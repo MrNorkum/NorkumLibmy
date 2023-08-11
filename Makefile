@@ -1,5 +1,8 @@
 NAME = libft.a
-FLAG = -Wall -Wextra -Werror
+RM = rm -rf
+COMPİLE = gcc -Wall -Wextra -Werror -c
+OBJ = $(SRC:.c=.o)
+BONUS_OBJ = $(BONUS:.c=.o)
 SRC = 	./ft_atoi.c 		\
  		./ft_bzero.c 		\
  		./ft_calloc.c 		\
@@ -47,17 +50,20 @@ BONUS = ./ft_lstadd_back.c 	\
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAG) -c $(SRC)
-	ar rc $(NAME) *.o
-bonus:
-	gcc $(FLAG) -c $(BONUS)
-	ar rc $(NAME) *.o
-clean:
-	/bin/rm -f  *.o
-fclean: clean
-	/bin/rm -f $(NAME)
+$(NAME) :
+	$(COMPILE) $(SRC)
+	ar rc $(NAME) $(OBJ)
 
-re: fclean all
+bonus :
+	$(COMPILE) $(BONUS)
+	ar rc $(NAME) $(BONUS_OBJ)
+
+clean :
+	$(RM) $(OBJ) $(BONUS_OBJ)
+
+fclean : clean
+	$(RM) $(NAME)
+
+re: fclean $(NAME)
 
 .PHONY: all bonus clean fclean re
