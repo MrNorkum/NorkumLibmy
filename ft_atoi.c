@@ -1,4 +1,4 @@
-static inline int my_atoi(const char *str, int sign, int res, int mod)
+static inline	int my_atoi(const char *str, int sign, int res, int mod)
 {
     if ((9 <= *str && *str <= 13) || *str == 32) && res == 0 && mod == 0)
         return (my_atoi(str + 1, sign, res, mod));
