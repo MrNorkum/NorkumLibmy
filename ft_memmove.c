@@ -9,6 +9,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	i = -1;
 	d = (unsigned char *)dst;
 	s = (const unsigned char *)src;
+	if (!dst && !src)
+		return (0);
 	if (d < s)
 		while (++i < len)
 			d[i] = s[i];
