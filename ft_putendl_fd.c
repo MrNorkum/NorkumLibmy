@@ -9,5 +9,7 @@ void	ft_putendl_fd(char *s, int fd)
 
 void	ft_putendl(char *s)
 {
-	ft_putendl_fd(s, 1);
+	while (*s && write(1, s++, 1))
+		;
+	write(1, "\n", 1);
 }
