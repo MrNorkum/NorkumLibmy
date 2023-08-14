@@ -18,7 +18,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trim = (char *)malloc(len + 1);
 	if (!trim)
 		return (NULL);
-	ft_strlcpy(trim, start, len + 1);
-	trim[len] = '\0';
-	return (trim);
+	return (ft_strlcpy(trim, start, len + 1), trim[len] = '\0', trim);
 }
