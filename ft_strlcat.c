@@ -2,17 +2,16 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	srclen;
-	size_t	dstlen;
 	size_t	i;
+	size_t	d;
+	size_t	s;
 
 	i = -1;
-	srclen = ft_strlen(src);
-	dstlen = ft_strlen(dst);
-	if (dstlen >= dstsize)
-		return (dstsize + srclen);
-	while (src[++i] && i + dstlen < dstsize - 1)
-		dst[dstlen + i] = src[i];
-	dst[dstlen + i] = '\0';
-	return (dstlen + srclen);
+	d = ft_strlen(dst);
+	s = ft_strlen(src);
+	if (!dstsize || dstsize <= d)
+		return (dstsize + s);
+	while (src[++i] && i < dstsize - d - 1)
+		dst[d + i] = src[i];
+	return (dst[d + i] = '\0', d + s);
 }
