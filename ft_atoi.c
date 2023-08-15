@@ -1,14 +1,14 @@
-static inline	int my_atoi(const char *str, int sign, int res, int mod)
+static inline int	my_atoi(const char *str, int sign, int res, int mod)
 {
-    if ((9 <= *str && *str <= 13) || *str == 32) && res == 0 && mod == 0)
-        return (my_atoi(str + 1, sign, res, mod));
-    if (*str == '-' && res == 0 && mod == 0)
-        return (my_atoi(str + 1, -1, res, 1));
-    if (*str == '+' && res == 0 && mod == 0)
-        return (my_atoi(str + 1, sign, res, 1));
-    if ('0' <= *str && *str <= '9')
-        return (my_atoi(str + 1, sign, res * 10 + *str - 48, mod));
-    return (res * sign);
+	if (((9 <= *str && *str <= 13) || *str == 32) && mod == 0)
+		return (my_atoi(str + 1, 1, 0, 0));
+	if (*str == 43 && mod == 0)
+		return (my_atoi(str + 1, 1, 0, 1));
+	if (*str == 45 && mod == 0)
+	    	return (my_atoi(str + 1, -1, 0, 1));
+	if ('0' <= *str && *str <= '9')
+		return (my_atoi(str + 1, sign, res * 10 + *str - 48, 1));
+	return (res * sign);
 }
 
 int ft_atoi(const char *str)
