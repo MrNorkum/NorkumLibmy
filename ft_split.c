@@ -1,7 +1,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-char	**malloc_error(char **tab, int i)
+char	**malloc_error(char **tab, size_t i)
 {
 	while (tab[i])
 		free(tab[i++]);
