@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-int	ft_numlen(int nbr)
+static int	ft_numlen(int nbr)
 {
 	int	i;
 
