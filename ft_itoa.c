@@ -1,45 +1,41 @@
 #include <stdlib.h>
 
-int	ft_numlen(int num)
+int	ft_numlen(int nbr)
 {
 	int	i;
 
-	i = 0;
-	if (num == 0)
-		return (1);
-	while (num > 0 || num < 0)
-	{
-		num /= 10;
+	i = 1;
+	if (!nbr)
+		return (2);
+	if (nbr < 0)
 		i++;
-	}
+	while ((nbr > 0 || nbr < 0) && ++i)
+		nbr /= 10;
 	return (i);
 }
 
 char	*ft_itoa(int n)
 {
 	int		len;
-	char	*ptr;
-	long	nbr;
+	char	*putnbr;
+	long	nb;
 
-	nbr = n;
-	len = ft_numlen(nbr);
+	nb = n;
+	len = ft_numlen(nb);
 	if (n < 0)
-	{
-		len++;
-		nbr *= -1;
-	}
-	ptr = (char *)malloc(sizeof(char) * len + 1);
-	if (!ptr)
+		nb = -nb;
+	putnbr = (char *)malloc(sizeof(char) * len);
+	if (!putnbr)
 		return (NULL);
-	ptr[len] = '\0';
-	while (nbr > 0)
-	{
-		ptr[--len] = nbr % 10 + 48;
-		nbr /= 10;
-	}
 	if (n < 0)
-		ptr[0] = '-';
+		putnbr[0] = '-';
 	if (n == 0)
-		ptr[0] = '0';
-	return (ptr);
+		putnbr[0] = '0';
+	putnbr[--len] = '\0';
+	while (nb > 0)
+	{
+		putnbr[--len] = nb % 10 + 48;
+		nb /= 10;
+	}
+	return (putnbr);
 }
