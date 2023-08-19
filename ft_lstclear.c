@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <stdlib.h>
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
@@ -8,8 +9,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst != 0)
 	{
-		arr = (*lst)-> next;
-		ft_lstdelone(*lst, del);
+		arr = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
 		(*lst) = arr;
 	}
 	*lst = 0;
