@@ -1,6 +1,8 @@
 NAME = libft.a
 RM = rm -rf
-CMPL = gcc -Wall -Wextra -Werror -c
+CC = gcc
+FLAG = -Wall -Wextra -Werror
+CMPL = $(CC) $(FLAG) -c
 SRC = 	./ft_atoi.c 		\
  		./ft_bzero.c 		\
  		./ft_calloc.c 		\
@@ -52,15 +54,15 @@ BONUS_OBJ = $(BONUS:.c=.o)
 all: $(NAME)
 
 $(NAME) :
-	$(CMPL) $(SRC)
-	ar rc $(NAME) $(OBJ)
+	@$(CMPL) $(SRC)
+	@ar rc $(NAME) $(OBJ)
 bonus :
-	$(CMPL) $(BONUS)
-	ar rc $(NAME) $(BONUS_OBJ)
+	@$(CMPL) $(BONUS)
+	@ar rc $(NAME) $(BONUS_OBJ)
 clean :
-	$(RM) $(OBJ) $(BONUS_OBJ)
+	@$(RM) $(OBJ) $(BONUS_OBJ)
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 re: fclean $(NAME)
 
 .PHONY: all bonus clean fclean re
