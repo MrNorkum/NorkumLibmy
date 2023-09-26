@@ -5,9 +5,7 @@ static int	ft_numlen(int nbr)
 	int	i;
 
 	i = 1;
-	if (!nbr)
-		return (2);
-	if (nbr < 0)
+	if (nbr <= 0)
 		i++;
 	while ((nbr > 0 || nbr < 0) && ++i)
 		nbr /= 10;
