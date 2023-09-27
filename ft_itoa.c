@@ -4,7 +4,7 @@ static int	ft_numlen(int nbr)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	if (nbr <= 0)
 		i++;
 	while ((nbr > 0 || nbr < 0) && ++i)
@@ -15,25 +15,24 @@ static int	ft_numlen(int nbr)
 char	*ft_itoa(int n)
 {
 	int		len;
-	char	*putnbr;
+	char	*res;
 	long	nb;
 
 	nb = n;
 	len = ft_numlen(nb);
-	if (n < 0)
-		nb = -nb;
-	putnbr = (char *)malloc(sizeof(char) * len);
-	if (!putnbr)
+	res= (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
 		return (NULL);
-	if (n < 0)
-		putnbr[0] = '-';
-	if (n == 0)
-		putnbr[0] = '0';
-	putnbr[--len] = '\0';
-	while (nb > 0)
+	if (nb < 0)
+		res[0] = '-';
+	nb *= !(n < 0) - (n < 0);
+	if (!nb)
+		res[0] = '0';
+	res[len] = '\0';
+	while (nb)
 	{
-		putnbr[--len] = nb % 10 + 48;
+		res[--len] = nb % 10 + 48;
 		nb /= 10;
 	}
-	return (putnbr);
+	return (res);
 }
