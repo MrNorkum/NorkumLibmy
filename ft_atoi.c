@@ -1,35 +1,40 @@
-static int	my_atoi(const char *str, int sign, int res, int mod)
+static inline int isspaces(const char c)
 {
-	if (((9 <= *str && *str <= 13) || *str == 32) && mod == 0)
-		return (my_atoi(str + 1, 1, 0, 0));
-	if (*str == 43 && mod == 0)
-		return (my_atoi(str + 1, 1, 0, 1));
-	if (*str == 45 && mod == 0)
-		return (my_atoi(str + 1, -1, 0, 1));
-	if ('0' <= *str && *str <= '9')
-		return (my_atoi(str + 1, sign, res * 10 + *str - 48, 1));
-	return (res * sign);
+    return (c == 32 || (9 <= c && c <= 13));
 }
 
-int	ft_atoi(const char *str)
+int my_atoi(const char *s, char sign, register int res, char mod)
 {
-	return (my_atoi(str, 1, 0, 0));
+    if (isspaces(*s) && !mod)
+        return (my_atoi(s + 1, 1, 0, 0));
+    if (*s == '-' && !mod)
+        return (my_atoi(s + 1, -1, 0, 1));
+    if (*s == '+' && !mod)
+        return (my_atoi(s + 1, 1, 0, 1));
+    if ('0' <= *s && *s <= '9')
+        return (my_atoi(s + 1, sign, (res * 10) + (*s & 15), 1));
+    return (res * sign);
+}
+
+int ft_atoi(const char *str)
+{
+    return (my_atoi(str, 1, 0, 0));
 }
 ---------------------------------------------------------------------
 int	ft_atoi(const char *str)
 {
-	int	r;
-	int	d;
+	register int	res;
+	char		sign;
 
-	r = 0;
-	d = 1;
+	res = 0;
+	sign = 1;
 	while (*str == 32 || (9 <= *str && *str <= 13))
 		str++;
 	if (*str == 45)
-		d = -1;
+		sign = -1;
 	if (*str == 43 || *str == 45)
 		str++;
 	while (48 <= *str && *str <= 57)
-		r = r * 10 + *str++ - 48;
-	return (r * d);
+		res = (res * 10) + (*str++ & 15);
+	return (res * sign);
 }
