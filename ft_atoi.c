@@ -1,4 +1,4 @@
-static inline int isspaces(const char c)
+static int isspaces(const char c)
 {
     return (c == 32 || (9 <= c && c <= 13));
 }
@@ -21,6 +21,11 @@ int ft_atoi(const char *str)
     return (my_atoi(str, 1, 0, 0));
 }
 ---------------------------------------------------------------------
+static int isspaces(const char c)
+{
+    return (c == 32 || (9 <= c && c <= 13));
+}
+	
 int	ft_atoi(const char *str)
 {
 	int	res;
@@ -28,13 +33,13 @@ int	ft_atoi(const char *str)
 
 	res = 0;
 	sign = 0;
-	while (*str == 32 || (9 <= *str && *str <= 13))
+	while (isspaces(*str))
 		str++;
-	if (*str == 45)
+	if (*str == '-')
 		sign = 1;
-	if (*str == 43 || *str == 45)
+	if (*str == '+' || *str == '-')
 		str++;
-	while (48 <= *str && *str <= 57)
+	while ('0' <= *str && *str <= '9')
 		res = (res * 10) + (*str++ & 15);
 	if (sign)
 		res = ~res + 1;
