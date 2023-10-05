@@ -3,7 +3,7 @@ static int isspaces(const char c)
     return (c == 32 || (9 <= c && c <= 13));
 }
 
-int my_atoi(const char *s, char sign, int res, char mod)
+static int my_atoi(const char *s, char sign, int res, char mod)
 {
     if (isspaces(*s) && !mod)
         return (my_atoi(s + 1, 1, 0, 0));
