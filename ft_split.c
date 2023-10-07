@@ -1,14 +1,14 @@
 #include "libft.h"
 #include <stdlib.h>
 
-char	**malloc_error(char **tab, size_t i)
+char	**malloc_error(char **arr, size_t i)
 {
-	while (tab[i])
-		free(tab[i++]);
-	return (free(tab), NULL);
+	while (arr[i])
+		free(arr[i++]);
+	return (free(arr), NULL);
 }
 
-static int	wc(char const *s, char c)
+static int	word_count(char const *s, char c)
 {
 	size_t	i;
 
@@ -27,7 +27,7 @@ static int	wc(char const *s, char c)
 	return (i);
 }
 
-static int	wlen(char const *s, char c)
+static int	word_len(char const *s, char c)
 {
 	int	len;
 
@@ -47,17 +47,17 @@ char	**ft_split(char const *s, char c)
 
 	a = -1;
 	i = 0;
-	res = (char **)malloc(sizeof(char *) * (wc(s, c) + 1));
+	res = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1));
 	if (!s || !res)
 		return (NULL);
-	while (++a < wc(s, c))
+	while (++a < word_count(s, c))
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		res[a] = ft_substr(s, i, wlen(&s[i], c));
+		res[a] = ft_substr(s, i, word_len(&s[i], c));
 		if (!res[a])
 			return (malloc_error(res, 0));
-		i += wlen(&s[i], c);
+		i += word_len(&s[i], c);
 	}
 	return (res[a] = NULL, res);
 }
