@@ -1,68 +1,103 @@
-NAME = libft.a
-RM = rm -rf
+NAME = libmy.a
 CC = gcc
 FLAG = -Wall -Wextra -Werror
 CMPL = $(CC) $(FLAG) -c
-SRC = 	./ft_atoi.c 		\
- 		./ft_bzero.c 		\
- 		./ft_calloc.c 		\
- 		./ft_isalnum.c 		\
- 		./ft_isalpha.c 		\
- 		./ft_isascii.c 		\
- 		./ft_isdigit.c 		\
- 		./ft_isprint.c 		\
- 		./ft_itoa.c 		\
- 		./ft_memchr.c 		\
- 		./ft_memcmp.c 		\
- 		./ft_memcpy.c 		\
- 		./ft_memmove.c 		\
- 		./ft_memset.c 		\
- 		./ft_putchar_fd.c 	\
- 		./ft_putendl_fd.c 	\
- 		./ft_putnbr_fd.c 	\
- 		./ft_putstr_fd.c 	\
-		./ft_split.c		\
- 		./ft_strchr.c 		\
- 		./ft_strdup.c		\
- 		./ft_striteri.c 	\
- 		./ft_strjoin.c 		\
- 		./ft_strlcat.c 		\
-		./ft_strlcpy.c		\
- 		./ft_strlen.c 		\
- 		./ft_strmapi.c 		\
- 		./ft_strncmp.c 		\
- 		./ft_strnstr.c 		\
-		./ft_strrchr.c 		\
- 		./ft_strtrim.c 		\
-		./ft_substr.c		\
- 		./ft_tolower.c 		\
- 		./ft_toupper.c
+RM = rm -rf
+MKDIR = mkdir -p
+OBJDIR = OBJECTS
+OBJDIRBONUS = OBJECTS
 
-BONUS = ./ft_lstadd_back.c 	\
-		./ft_lstadd_front.c	\
- 		./ft_lstclear.c		\
- 		./ft_lstdelone.c 	\
- 		./ft_lstiter.c 		\
-		./ft_lstlast.c		\
- 		./ft_lstmap.c 		\
- 		./ft_lstnew.c		\
-		./ft_lstsize.c
+SRC =	./my_atoi.c			\
+		./my_bzero.c		\
+		./my_calloc.c		\
+		./my_isalnum.c		\
+		./my_isalpha.c		\
+		./my_isascii.c		\
+		./my_isdigit.c		\
+		./my_isprint.c		\
+		./my_itoa.c			\
+		./my_memchr.c		\
+		./my_memcmp.c		\
+		./my_memcpy.c		\
+		./my_memmove.c		\
+		./my_memset.c		\
+		./my_putchar_fd.c	\
+		./my_putendl_fd.c	\
+		./my_putnbr_fd.c	\
+		./my_putstr_fd.c	\
+		./my_split.c		\
+		./my_strchr.c		\
+		./my_strdup.c		\
+		./my_striteri.c		\
+		./my_strjoin.c		\
+		./my_strlcat.c		\
+		./my_strlcpy.c		\
+		./my_strlen.c		\
+		./my_strmapi.c		\
+		./my_strncmp.c		\
+		./my_strnstr.c		\
+		./my_strrchr.c		\
+		./my_strtrim.c		\
+		./my_substr.c		\
+		./my_tolower.c		\
+		./my_toupper.c
 
-OBJ = $(SRC:.c=.o)
-BONUS_OBJ = $(BONUS:.c=.o)
+BONUS = ./my_lstadd_back.c	\
+		./my_lstadd_front.c	\
+		./my_lstclear.c		\
+		./my_lstdelone.c	\
+		./my_lstiter.c		\
+		./my_lstlast.c		\
+		./my_lstmap.c		\
+		./my_lstnew.c		\
+		./my_lstsize.c
+
+OBJ = $(addprefix $(OBJDIR)/,$(notdir $(SRC:.c=.o)))
+BONUS_OBJ = $(addprefix $(OBJDIRBONUS)/,$(notdir $(BONUS:.c=.o)))
+
+$(OBJDIR)/%.o:  %.c
+	@$(MKDIR) $(OBJDIR)
+	@$(CMPL) $< -o $@
+
+$(OBJDIRBONUS)/%.o: %.c
+	@$(MKDIR) $(OBJDIRBONUS)
+	@$(CMPL) $< -o $@
 
 all: $(NAME)
+a: all
 
-$(NAME) :
-	@$(CMPL) $(SRC)
+$(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
-bonus :
-	@$(CMPL) $(BONUS)
+	@ranlib $(NAME)
+
+b: bonus
+bonus: $(BONUS_OBJ)
 	@ar rc $(NAME) $(BONUS_OBJ)
-clean :
-	@$(RM) $(OBJ) $(BONUS_OBJ)
+	@ranlib $(NAME)
+
+c: clean
+clean:
+	@$(RM) $(OBJDIR)
+
+f: fclean
 fclean : clean
 	@$(RM) $(NAME)
-re: fclean $(NAME)
 
-.PHONY: all bonus clean fclean re
+re: fclean all
+bre: fclean bonus
+
+br: bre
+rb: bre
+reb: bre
+
+r:
+	@make fclean
+	@make all
+	@make bonus
+	@make clean
+
+n: norm
+norm:
+	@norminette $(SRC) $(BONUS)
+
+.PHONY: all clean fclean re bonus
