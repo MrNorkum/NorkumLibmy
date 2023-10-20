@@ -15,7 +15,7 @@ SRC =	./my_atoi.c			\
 		./my_isascii.c		\
 		./my_isdigit.c		\
 		./my_isprint.c		\
-		./my_itoa.c			\
+		./my_itoa.c		\
 		./my_memchr.c		\
 		./my_memcmp.c		\
 		./my_memcpy.c		\
@@ -42,7 +42,7 @@ SRC =	./my_atoi.c			\
 		./my_tolower.c		\
 		./my_toupper.c
 
-BONUS = ./my_lstadd_back.c	\
+BONUS = 	./my_lstadd_back.c	\
 		./my_lstadd_front.c	\
 		./my_lstclear.c		\
 		./my_lstdelone.c	\
