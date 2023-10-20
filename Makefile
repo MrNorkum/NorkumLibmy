@@ -7,7 +7,7 @@ MKDIR = mkdir -p
 OBJDIR = OBJECTS
 OBJDIRBONUS = OBJECTS
 
-SRC =	./my_atoi.c			\
+SRC =		./my_atoi.c		\
 		./my_bzero.c		\
 		./my_calloc.c		\
 		./my_isalnum.c		\
