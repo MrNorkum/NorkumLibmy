@@ -2,15 +2,10 @@
 
 void	my_lstadd_back(list_t **lst, list_t *new)
 {
-	list_t	*last;
-
 	if (!lst)
 		return ;
-	if (!*lst)
-	{
+	else if (*lst)
+		my_lstlast(*lst)->next = new;
+	else
 		*lst = new;
-		return ;
-	}
-	last = my_lstlast(*lst);
-	last->next = new;
 }
