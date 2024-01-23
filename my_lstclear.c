@@ -3,16 +3,10 @@
 
 void	my_lstclear(list_t **lst, void (*del)(void *))
 {
-	list_t	*arr;
-
 	if (!lst || !del)
 		return ;
-	while (*lst != 0)
-	{
-		arr = (*lst)->next;
-		del((*lst)->content);
-		free(*lst);
-		(*lst) = arr;
-	}
+	my_lstclear(&(*lst)->next, del);
+	del((*lst)->content);
+	free(*lst);
 	*lst = 0;
 }
